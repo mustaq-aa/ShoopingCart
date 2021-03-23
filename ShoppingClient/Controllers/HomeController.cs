@@ -27,6 +27,7 @@ namespace ShoppingClient.Controllers
         public IActionResult Privacy()
         {
             return View();
+            //Testing autobuild
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
