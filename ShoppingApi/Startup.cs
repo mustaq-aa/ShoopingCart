@@ -12,6 +12,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Swashbuckle.AspNetCore;
 using Microsoft.OpenApi.Models;
+using ShoppingApi.Data;
 
 namespace ShoppingApi
 {
@@ -31,6 +32,7 @@ namespace ShoppingApi
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc(name: "v1", new OpenApiInfo { Title = "ShoppingApi", Version = "v1" });
             });
+            services.AddScoped<ProductContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

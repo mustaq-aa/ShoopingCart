@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using ShoppingApi.Data;
 using ShoppingApi.Models;
 using System.Net.Http;
+using MongoDB.Driver;
 
 namespace ShoppingApi.Controllers
 {
@@ -15,17 +16,19 @@ namespace ShoppingApi.Controllers
     public class ProductController : ControllerBase
     {
         private readonly ILogger<ProductController> _logger;
+        private readonly ProductContext _context;
         
         [HttpGet]
-        public IEnumerable<Product> Get()
+        public async Task<IEnumerable<Product>> Get()
         {
-            return ProductContext.Products;
+            return await _context.Products.Find(p => true).ToListAsync();
         }
 
 
-        public ProductController(ILogger<ProductController> logger)
+        public ProductController(ILogger<ProductController> logger,ProductContext context)
         {
-            _logger = logger;            
+            _logger = logger;
+            _context = context;
         }
     }
 }
